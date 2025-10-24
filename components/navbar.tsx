@@ -1,11 +1,12 @@
 "use client";
 
+import clsx from "clsx";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import clsx from "clsx";
 
 import Container from "./container";
+import Logo from "./logo";
 
 interface MenuItem {
   label: string;
@@ -53,13 +54,7 @@ export default function Navbar() {
 
             <div className="flex w-full items-center justify-between md:w-auto">
               <Link className="w-28 dark:hidden" href="/" aria-label="Home">
-                <Image
-                  src="/logo.svg"
-                  alt="Logo"
-                  width={112}
-                  height={32}
-                  priority
-                />
+                <Logo />
               </Link>
 
               <Link
@@ -86,6 +81,7 @@ export default function Navbar() {
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
                 >
+                  <title>Menu</title>
                   <path
                     className={clsx({ hidden: open })}
                     fillRule="evenodd"
@@ -149,7 +145,7 @@ function NavLink({ item, mobile = false }: NavLinkProps) {
   }
 
   return (
-    <Link className={className} href={item.href}>
+    <Link className={className} href={item.href as any}>
       {item.label}
       {item.badge && !mobile ? (
         <span className="ml-2 rounded-full bg-blue-100 px-2 py-0.5 text-xs text-blue-600 dark:bg-blue-900 dark:text-blue-200">
